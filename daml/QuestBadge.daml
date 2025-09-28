@@ -1,4 +1,4 @@
-cat > daml/QuestBadge.daml <<EOF
+cat > daml/QuestBadge.daml <<'EOF'
 daml 1.2
 
 module QuestBadge where
