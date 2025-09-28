@@ -3,14 +3,8 @@ services:
   canton:
     image: digitalasset/canton-ce:2.8.3
     ports:
-      - "8080:8080"  # JSON API
-      - "8082:8082"  # Ledger API (opsiyonel)
+      - "8080:8080"
     volumes:
       - ./dist:/dars
       - ./canton:/config
     command: ["--config", "/config/demo.conf"]
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
