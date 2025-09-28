@@ -1,4 +1,3 @@
-<<'EOF'
 module QuestBadge where
 
 import DA.Time
@@ -12,9 +11,8 @@ template Badge
   where
     signatory owner
 
-    -- Contract key: owner + badgeType (her kullanıcı her rozetten bir tane alabilir)
     key (owner, badgeType) : (Party, Text)
-    maintainer key._1  -- sadece owner maintainer olabilir
+    maintainer key._1
 
     choice Transfer : ContractId Badge
       with
@@ -22,4 +20,3 @@ template Badge
       controller owner
       do
         create this with owner = newOwner
-EOF
