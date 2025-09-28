@@ -1,6 +1,4 @@
-cat > daml/QuestBadge.daml <<'EOF'
-daml 1.2
-
+<<'EOF'
 module QuestBadge where
 
 import DA.Time
@@ -13,8 +11,10 @@ template Badge
     issuedAt : Time
   where
     signatory owner
-    key (discordId, badgeType) : (Text, Text)
-    maintainer key._1
+
+    -- Contract key: owner + badgeType (her kullanıcı her rozetten bir tane alabilir)
+    key (owner, badgeType) : (Party, Text)
+    maintainer key._1  -- sadece owner maintainer olabilir
 
     choice Transfer : ContractId Badge
       with
