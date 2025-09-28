@@ -1,27 +1,25 @@
+cat > daml/QuestBadge.daml <<EOF
 daml 1.2
 
 module QuestBadge where
 
 import DA.Time
 
--- Tek bir rozet (NFT benzeri)
 template Badge
   with
-    owner : Party          -- Canton tarafı (örn: User1)
-    discordId : Text       -- Discord kullanıcı ID'si (örn: "1234567890")
-    badgeType : Text       -- Rozet türü: "Explorer", "Trader", vs.
-    issuedAt : Time        -- Verildiği zaman
+    owner : Party
+    discordId : Text
+    badgeType : Text
+    issuedAt : Time
   where
     signatory owner
-
-    -- Aynı Discord ID'sine ve rozet türüne sahip birden fazla rozet olmasın
     key (discordId, badgeType) : (Text, Text)
     maintainer key._1
 
-    -- Sahibi rozeti başkasına devredebilir (opsiyonel)
     choice Transfer : ContractId Badge
       with
         newOwner : Party
       controller owner
       do
         create this with owner = newOwner
+EOF
