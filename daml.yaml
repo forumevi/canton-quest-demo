@@ -1,3 +1,4 @@
+
 sdk-version: 2.10.2
 name: quest-badge
 version: 1.0.0
@@ -10,4 +11,5 @@ dependencies:
   - daml-stdlib
 start-navigator: false
 start-json-api: true
-json-api-port: 8080
+json-api-port: 7575
+json-api-allow-insecure-tokens: true
